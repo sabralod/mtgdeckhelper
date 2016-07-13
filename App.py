@@ -13,6 +13,12 @@ import RestProvider.RestProvider as rest
 # Creating our Flask App
 app = Flask(__name__)
 
+@app.route("/user/<id>", methods=["GET"])
+def showUser(id):
+    print("Get user with id " + id)
+    print(request.path)
+    return "Ok",200
+
 # Receive an POST request with form data request
 @app.route("/user", methods=["POST"])
 def hello():
