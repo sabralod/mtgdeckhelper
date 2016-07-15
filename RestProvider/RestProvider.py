@@ -25,8 +25,3 @@ class RestProvider:
             result.append(FormattingUtility.getFormattedJSON(response.text))
 
         return result
-
-
-
-
-test =  RestProvider()
