@@ -4,7 +4,7 @@ import json
 #### -F
 
 def getFormattedJSON(jsonString):
-    return format(json.dumps(jsonString, indent=4, separators=(',', ': ')))
+    return format(json.dumps(jsonString))
 
 def format(string):
     return string.decode('string_escape')
