@@ -10,7 +10,7 @@ class DatabaseProvider:
     sql_command = '''
     CREATE TABLE IF NOT EXISTS cards
     (id INTEGER PRIMARY KEY,
-    cardId INTEGER)'''
+    cardId TEXT)'''
     # je nachdem was noch eingefügt werden sollte
 
     cursor.execute(sql_command)
