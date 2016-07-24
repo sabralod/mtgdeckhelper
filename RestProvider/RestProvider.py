@@ -12,12 +12,7 @@ class RestProvider:
     # search for card with certain name, return card object in json
     def queryName(self, query):
         response = requests.get(self.urlBase + "?name=" + query)
-        data = json.loads(response.text)
-        # for d in data:
-        #     print d['id']
-        # print data[0]['id']
-        # return FormattingUtility.getFormattedJSON(response.text)
-        return response.text
+        return FormattingUtility.getDict(response)
 
 
 
@@ -27,6 +22,6 @@ class RestProvider:
 
         for id in idList:
             response = requests.get(self.urlBase + "/" + id)
-            result.append(FormattingUtility.getFormattedJSON(response.text))
+            result.append(FormattingUtility.getDict(response.text))
 
         return result
