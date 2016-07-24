@@ -1,0 +1,39 @@
+listeMitDsI = getCollection() -soll die auf der DB gespeicherte Kollektion aufrufen, die nur aus ID´s besteht
+listErgebnisse = queryIDs(listeMitDsI) -soll von diesen ID , von der API, JSON Objekte bekommen die in Python Dictonaries umgewandelt werden
+
+die Thoughness/Cost/Power/Type Bool/Int Werte sind nur für ReFilter() wichtig. Dazu später mehr.
+
+FilterShowColor("x"):
+filtert die gesamtmenge(am Anfang die GesamtKollektion) der Karten und gibt eine neue Liste, in  der nur Karten der Color x sind.
+Da es Karten mit MultiColor gibt, kann man die Funktion öfter mit verschiedenen Farben aufrufen um die Schnittmenge zu bekommen.
+Es gibt nur die Farben: Black,Blue,Green,Red,White; Und eine beliebige Kombination aus diesen (als Liste).
+"none" soll alle Farben Filter aufeheben. Als Vorstellung waren fünf Kästchen mit den Farben betitelt, denen man  einzeln Häckchen setzen kann oder Häckchen entfernen.
+Hier sollte x einer der Farben oder "none" ,bzw keine Angabe sein.
+
+FilterShowType("x"):
+filtert die gesamtmenge(am Anfang die GesamtKollektion) der Karten und gibt eine neue Liste, in  der nur Karten des Type x sind.
+Es gibt 12 verschiedene Typen, die im Normalfall nur einzeln auftauchen(Im Fall dass es Karten gibt die mehrere Typen haben, werden die nur dann rausgefiltert wenn sie Type x NICHT haben)
+Dementsprechend kann man nicht Schnittmengen unter Type selbst Filtern sondern immer nur einen Type oder eben keinen (sodass alle Types angezeigt werden).
+Gedacht war ein Auswahlmenü mit 13 Elementen ( 12 Types und "nicht ausgewählt"). "none" bewrikt dass kein Type ausgewählt ist.
+Hier sollte x einer der Types oder "none" ,bzw keine Angabe sein.
+
+Die Reset-Funktonen von FilterToughness()/FilterPower()/FilterCost() sollen alle Veränderungen der jeweiligen Funktion negieren.
+
+FilterToughness(x,"<")/FilterPower(x,"<")/FilterCost(x,"<"):
+Funktionieren ähnlich. Man gibt einen Wert und einen Operator an. Alles was "<"/"="/">" x ist wird in die neu Liste übernohmen, bzw der Rest(">="/"!=""<=") wird rausgefiltert.
+Da "<" und ">" sinnvoll gleichzeitig wirksam sein können kann man beide gleichzeitig anwenden (durch zweimaliges aufrufen der methode), um ein bestimmtes Intervall angezeigt zu bekommen; Man kann aber auch nichts rausbekommen, weil anfragen wie "x<5"(FilterToughness (5,"<")) UND x>6(FilterToughness (6,">")) erlaubt sind
+"<"/">" sind jedoch mit "=" nicht sinnvoll, deswegen gibt der Filter entweder ">"und/oder"<" ODER "=" gleichzeitig aus.
+Wenn also ein >-Filter bei Toughness schon aktiv ist, dann würde eine "="-Anfrage diesen überschreiben. 
+x sollte ein Int sein und "<" einer dieser Operatoren: "<","=",">". Sinnvoll für x sind Werte zwischen -3 und 100. DefaultOperator ist ">".
+Besonderheit bei FilterToughness(x,"<")/FilterPower(x,"<"):
+Power und Toughness können den Wert "*" haben , d.h. dieser ist Variabel, Somit wird er in den </>-Filtervorgang nicht rausgefiltert.
+Man kann aber die Karten mit * über FilterToughness("*","!=")/FilterPower("*","!=") rausfiltern.
+Mit FilterToughness("*","=")/FilterPower("*","=") nur solche anzeigen lassen.
+
+Aus Gründen der Effizienz wird "listErgebnisse" immer selbst verändert, wenn ein neuer Filter dazukommt (die Menge kleiner wird);
+Da es aber möglich ist Filter wieder auszuschalten (wodurch die Menge größer werden müsste), und das nicht notwendigerweise den letzten Filterprozess rückgängig macht sondern irgendeinen vorherigen, und es dazu keine einfache und effiziente Lösung gibt, gibt es ReFilter().
+ReFilter() berechnet alle Filtervorgänge die erwünscht sind neu (deswegen ziemlich langsam) und lässt die unewünschten aus. Was und wie die Filter erwünscht sind wird in Thoughness/Cost/Power/Type Bool/Int Variablen gespeichert.
+
+
+
+
