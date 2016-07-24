@@ -1,7 +1,7 @@
 # This provider is an interface to the glorious "deckbrew api". Visit their developers at: https://deckbrew.com/api/
 # - F
 
-import requests, FormattingUtility
+import requests, FormattingUtility, json
 
 class RestProvider:
     def __init__(self):
@@ -12,7 +12,12 @@ class RestProvider:
     # search for card with certain name, return card object in json
     def queryName(self, query):
         response = requests.get(self.urlBase + "?name=" + query)
-        return FormattingUtility.getFormattedJSON(response.text)
+        data = json.loads(response.text)
+        # for d in data:
+        #     print d['id']
+        # print data[0]['id']
+        # return FormattingUtility.getFormattedJSON(response.text)
+        return response.text
 
 
 
