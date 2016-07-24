@@ -9,6 +9,7 @@ import json
 # Here we import our DatabaseProvider as a variable db
 import DatabaseProvider.DatabaseProvider as db
 import RestProvider.RestProvider as rest
+import RestProvider.FormattingUtility as formating
 
 # Creating our Flask App
 app = Flask(__name__)
@@ -30,7 +31,12 @@ def removeCollection(id):
 def searchCard():
     phrase = ""
     phrase += request.args.get("text")
-    resp = make_response(deckbrew.queryName(phrase), 200)
+    data = formating.getDict(deckbrew.queryName(phrase))
+
+    for d in data:
+        print d['id']
+
+    resp = make_response(formating.getFormattedJSON(data), 200)
     resp.headers["Content-Type"] = "application/json"
     return resp
 
