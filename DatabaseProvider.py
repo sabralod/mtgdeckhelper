@@ -22,6 +22,7 @@ class DatabaseProvider:
             con.commit()
         except sqlite3.Error, e:
             print "sqlite error: %s" % e.args[0]
+            raise
         finally:
             if con:
                 con.close()
@@ -39,6 +40,7 @@ class DatabaseProvider:
             con.commit()
         except sqlite3.Error, e:
             print "sqlite error: %s" % e.args[0]
+            raise
         finally:
             if con:
                 con.close()
@@ -55,6 +57,7 @@ class DatabaseProvider:
             con.commit()
         except sqlite3.Error, e:
             print "sqlite error: %s" % e.args[0]
+            raise
         finally:
             if con:
                 con.close()
@@ -76,6 +79,7 @@ class DatabaseProvider:
             con.commit()
         except sqlite3.Error, e:
             print "sqlite error: %s" % e.args[0]
+            raise
         finally:
             if con:
                 con.close()
@@ -92,6 +96,7 @@ class DatabaseProvider:
             con.commit()
         except sqlite3.Error, e:
             print "sqlite error: %s" % e.args[0]
+            raise
         finally:
             if con:
                 con.close()
@@ -108,6 +113,7 @@ class DatabaseProvider:
             result = c.fetchall()
         except sqlite3.Error, e:
             print "sqlite error: %s" % e.args[0]
+            raise
         finally:
             if con:
                 con.close()
@@ -126,6 +132,7 @@ class DatabaseProvider:
             result = c.fetchall()
         except sqlite3.Error, e:
             print "sqlite error: %s" % e.args[0]
+            raise
         finally:
             if con:
                 con.close()
