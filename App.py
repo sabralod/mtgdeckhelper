@@ -27,7 +27,7 @@ def searchCard():
         resp = make_response(json.dumps(result), 200)
         resp.headers["Content-Type"] = "application/json"
     except Exception as e:
-        resp = make_response(json.dumps({'success':False, 'error':e}), 404)
+        resp = make_response(json.dumps({'success':False}), 404)
         resp.headers["Content-Type"] = "application/json"
 
     return resp
@@ -42,7 +42,7 @@ def addUser():
         resp = make_response(json.dumps({'success':True}), 200)
         resp.headers["Content-Type"] = "application/json"
     except Exception as e:
-        resp = make_response(json.dumps({'success':False, 'error':e}), 404)
+        resp = make_response(json.dumps({'success':False}), 404)
         resp.headers["Content-Type"] = "application/json"
 
     return resp
@@ -57,7 +57,7 @@ def deleteUser():
         resp = make_response(json.dumps({'success':True}), 200)
         resp.headers["Content-Type"] = "application/json"
     except Exception as e:
-        resp = make_response(json.dumps({'success':False, 'error':e}), 404)
+        resp = make_response(json.dumps({'success':False}), 404)
         resp.headers["Content-Type"] = "application/json"
 
     return resp
@@ -72,7 +72,7 @@ def addCard(username):
         resp = make_response(json.dumps({'success':True}), 200)
         resp.headers["Content-Type"] = "application/json"
     except Exception as e:
-        resp = make_response(json.dumps({'success':False, 'error':e}), 404)
+        resp = make_response(json.dumps({'success':False}), 404)
         resp.headers["Content-Type"] = "application/json"
 
     return resp
