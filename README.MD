@@ -11,9 +11,9 @@ https://docs.python.org/2.7/library/json.html
 
 ##Rest Routes
 * GET /find - Find cards with optional filter arguments
-* POST /user - # Add user to database
+* POST /user - Add user to database
 * DELETE /user - Delete user in database
-* POST /user/<username>/card - Add card to user's collection
-* GET /user/<username>/cards - Get all cards from user's collection with optional filter arguments
-* DELETE /user/<username>/card/<cardname> - Delete a card from user's collection
+* POST /user/[username]/card - Add card to user's collection
+* GET /user/[username]/cards - Get all cards from user's collection with optional filter arguments
+* DELETE /user/[username]/card/[cardname] - Delete a card from user's collection
 * GET /users - Get all users - mostly used for testing
