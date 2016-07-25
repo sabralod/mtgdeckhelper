@@ -7,26 +7,24 @@ class RestProvider:
     def __init__(self):
         self.urlBase = "http://api.deckbrew.com/mtg/cards"
 
-
-
-    # search for card with certain name, return card object in json
+    # search for card with certain arguments
     def query(self, args):
-        uri = self.urlBase + "?"
-
+        # Build url with filter arguments
+        url = self.urlBase + "?"
         for k,v in args.items():
-            uri += k + "=" + v + "&"
+            url += k + "=" + v + "&"
 
-        print uri[:-1]
-
-        response = requests.get(uri[:-1])
+        # Send request and cut the last "&"
+        response = requests.get(url[:-1])
         return response.text
 
-    # # get all data from IDs, return list of card objects
-    # def queryIDs(self, idList):
-    #     result = []
-    #
-    #     for id in idList:
-    #         response = requests.get(self.urlBase + "/" + id)
-    #         result.append(FormattingUtility.getFormattedJSON(response.text))
-    #
-    #     return result
+    # search for card with certain name and arguments
+    def queryByCardName(self, name, args):
+        # Build url with name and filter arguments
+        url = self.urlBase + "?name=" + name + "&"
+        for k,v in args.items():
+            url += k + "=" + v + "&"
+
+        # Send request and cut the last "&"
+        response = requests.get(url[:-1])
+        return response.text
